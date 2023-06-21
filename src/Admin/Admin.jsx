@@ -4,7 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import "./css/style.css";
 
 import "./charts/ChartjsConfig";
-
+import ThemeProvider from "./utils/ThemeContext";
 // Import pages
 import Dashboard from "./pages/Dashboard";
 
@@ -19,7 +19,9 @@ function App() {
 
   return (
     <>
-      <Dashboard />
+      <ThemeProvider>
+        <Dashboard />
+      </ThemeProvider>
     </>
   );
 }

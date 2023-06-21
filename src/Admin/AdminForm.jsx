@@ -111,7 +111,7 @@ const Forms = () => {
             className="md:w-2/3 mx-auto border-2 p-8 rounded-xl shadow-md"
           >
             <h1 className="text-3xl font-bold text-center mb-4">
-              Tenders Forms
+              Admin Tenders Forms
             </h1>
 
             <div className="mb-4">
@@ -434,19 +434,7 @@ const Forms = () => {
               />
             </div>
 
-            <div className="mb-4">
-              <label htmlFor="services" className="flex items-center">
-                Select
-              </label>
-              <select
-                id="services" name="userCategory" value={formValues.userCategory} onChange={handleChange}
-                className="border border-gray-300 rounded px-3 py-2 w-full"
-              >
-                <option value="">Select an option</option>
-                <option value="contractor">Contractor</option>
-                <option value="subcontractor">Sub Contractor</option>
-              </select>
-            </div>
+            
             <button
               type="submit"
               className="bg-red-700 text-white py-2 px-4 rounded transition-colors duration-300 w-full"

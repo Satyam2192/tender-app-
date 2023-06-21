@@ -7,29 +7,28 @@ import AdvancedSearch from "./pages/AdvancedSearch";
 import TenderListingPage from "./pages/TenderListingPage";
 import ContactUsPage from "./pages/ContactPage";
 import Tender from "./pages/Tender";
-import Forms from "./components/Forms"
-import Admin from "./Admin/Admin"
+import Forms from "./components/Forms";
+import Admin from "./Admin/Admin";
+import AdminForm from "./Admin/AdminForm";
 const App = () => {
-
   return (
-   
+    <BrowserRouter>
+      
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/advance-search" element={<AdvancedSearch />} />
+        <Route path="/tenders" element={<TenderListingPage />} />
+        <Route path="/tender/:referenceNo" element={<Tender />} />
+        <Route path="/contact" element={<ContactUsPage />} />
+        <Route path="/forms" element={<Forms />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/forms" element={<AdminForm />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+
     
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/advance-search" element={<AdvancedSearch />} /> 
-          <Route path="/tenders" element={<TenderListingPage />} /> 
-          <Route path="/tender/:referenceNo" element={<Tender />} />
-          <Route path="/contact" element={<ContactUsPage />} /> 
-          <Route path="/forms" element={<Forms />} /> 
-          <Route path="/admin" element={<Admin />} />
-
-
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-   
   );
 };
 
