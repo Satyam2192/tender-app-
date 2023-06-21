@@ -36,17 +36,17 @@ const ContactUsPage = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 max-w-7xl">
+    <div className="container mx-auto py-8 md:max-w-7xl">
       <div className="space-y-8">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center flex-col md:flex-row">
           <img
             src="https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?w=740&t=st=1687066253~exp=1687066853~hmac=42f23f007ad72bd2ca440a69684ce6508082c1182b3c54179addffc4163960af"
-            className="w-1/2"
+            className="w-4/5 md:w-1/2"
             alt="Contact illustration"
           />
           <form
             onSubmit={handleFormSubmit}
-            className="w-2/3 mx-auto border-2 p-8 rounded-xl shadow-md"
+            className="md:w-2/3 mx-auto border-2 p-8 rounded-xl shadow-md"
           >
             <h1 className="text-3xl font-bold text-center mb-4">Contact Us</h1>
             <div className="mb-4">

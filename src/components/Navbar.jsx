@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,7 +18,8 @@ const Navbar = () => {
               href="/"
               className="text-3xl font-bold tracking-wider text-red-700"
             >
-              Tender Website
+            <img className="w-[120px]" src={logo} alt="logo" />
+             
             </a>
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-end">
@@ -31,20 +33,21 @@ const Navbar = () => {
                     Home
                   </Link>
                 </div>
-                <div>
-                  <Link
-                    to="/contact"
-                    className="hover:bg-red-700 text-lg font-medium transition-colors duration-300 text-gray-600 hover:text-white px-3 py-2 rounded-md  w-[90px]"
-                  >
-                    Contact
-                  </Link>
-                </div>
+
                 <div>
                   <Link
                     to="/tenders"
                     className="hover:bg-red-700 text-lg font-medium transition-colors duration-300 text-gray-600 hover:text-white px-3 py-2 rounded-md  w-[90px]"
                   >
                     Tenders
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    to="/contact"
+                    className="hover:bg-red-700 text-lg font-medium transition-colors duration-300 text-gray-600 hover:text-white px-3 py-2 rounded-md  w-[90px]"
+                  >
+                    Contact
                   </Link>
                 </div>
                 <div>
@@ -84,15 +87,7 @@ const Navbar = () => {
                   Home
                 </Link>
               </div>
-              <div className="flex justify-end mx-[2px]">
-                <Link
-                  to="/about"
-                  className="hover:bg-red-700 text-lg font-medium transition-colors duration-300 px-3 py-2 rounded-md  w-[90px] shadow-lg border-[2px]"
-                  onClick={toggleMenu}
-                >
-                  About
-                </Link>
-              </div>
+
               <div className="flex justify-end mx-[2px]">
                 <Link
                   to="/tenders"
@@ -100,6 +95,15 @@ const Navbar = () => {
                   onClick={toggleMenu}
                 >
                   Tenders
+                </Link>
+              </div>
+              <div className="flex justify-end mx-[2px]">
+                <Link
+                  to="/about"
+                  className="hover:bg-red-700 text-lg font-medium transition-colors duration-300 px-3 py-2 rounded-md  w-[90px] shadow-lg border-[2px]"
+                  onClick={toggleMenu}
+                >
+                  About
                 </Link>
               </div>
               <div className="flex justify-end mx-[2px]">

@@ -7,6 +7,7 @@ import AdvancedSearch from "./pages/AdvancedSearch";
 import TenderListingPage from "./pages/TenderListingPage";
 import ContactUsPage from "./pages/ContactPage";
 import Tender from "./pages/Tender";
+import Forms from "./components/Forms"
 const App = () => {
 
   return (
@@ -20,6 +21,8 @@ const App = () => {
           <Route path="/tenders" element={<TenderListingPage />} /> 
           <Route path="/tender/:referenceNo" element={<Tender />} />
           <Route path="/contact" element={<ContactUsPage />} /> 
+          <Route path="/forms" element={<Forms />} /> 
+
 
         </Routes>
         <Footer />

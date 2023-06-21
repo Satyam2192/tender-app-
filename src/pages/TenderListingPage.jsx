@@ -43,6 +43,9 @@ const TenderListingPage = () => {
   const [selectedProduct, setSelectedProduct] = useState("");
   const [tenderData, setTenderData] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   const handleRegionChange = (e) => {
     const selectedRegion = e.target.value;
     setSelectedRegion(selectedRegion);
@@ -93,26 +96,106 @@ const TenderListingPage = () => {
     selectedFundingAgency,
     selectedGeoPolitical,
     selectedProduct,
+    selectedRegion,
   ]);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = tenderData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const goToPage = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const getPageNumbers = () => {
+    const totalPages = Math.ceil(tenderData.length / itemsPerPage);
+    const maxPageNumbers = 5;
+  
+    if (totalPages <= maxPageNumbers) {
+      return Array.from({ length: totalPages }, (_, index) => index + 1);
+    }
+  
+    const middlePage = Math.floor(maxPageNumbers / 2);
+    let startPage = currentPage - middlePage;
+    let endPage = currentPage + middlePage;
+  
+    if (startPage <= 0) {
+      startPage = 1;
+      endPage = maxPageNumbers;
+    } else if (endPage > totalPages) {
+      startPage = totalPages - maxPageNumbers + 1;
+      endPage = totalPages;
+    }
+  
+    return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
+  };
+  
+  
   return (
     <div className="mx-auto p-4 max-w-7xl">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="flex flex-col-reverse md:grid sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div className="sm:col-span-2 md:col-span-2">
           <h1 className="text-2xl font-bold mb-4">
             Online Tenders, Tenders Website, Bids & Tenders
           </h1>
-          {tenderData.map((tender, index) => (
-            <TenderCard
-              key={index}
-              title={tender.procurementSummary.summary}
-              deadline={tender.procurementSummary.deadline}
-              location={tender.procurementSummary.city}
-              referenceNo={tender.tenderId}
-            />
-          ))}
+          {currentItems.length > 0 ? (
+            <div>
+              {currentItems.map((tender, index) => (
+                <TenderCard
+                  key={index}
+                  title={tender.procurementSummary.summary}
+                  deadline={tender.procurementSummary.deadline}
+                  location={tender.procurementSummary.city}
+                  referenceNo={tender.tenderId}
+                />
+              ))}
+              <div className="flex justify-between mt-4">
+                <button
+                  className="bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors"
+                  onClick={() => goToPage(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous Page
+                </button>
+
+                <div>
+                  {getPageNumbers().map((pageNumber) => (
+                    <button
+                      key={pageNumber}
+                      className={`${
+                        pageNumber === currentPage
+                          ? "bg-red-700 text-white"
+                          : "bg-gray-200 text-gray-700"
+                      } font-bold py-2 px-4 rounded mr-2`}
+                      onClick={() => goToPage(pageNumber)}
+                    >
+                      {pageNumber}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  className="bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors"
+                  onClick={() => goToPage(currentPage + 1)}
+                  disabled={currentItems.length < itemsPerPage}
+                >
+                  Next Page
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p>No tenders found.</p>
+          )}
         </div>
-        <div className="flex flex-col-reverse  md:flex-col">
+        <div className="">
           <div className="border border-gray-300 p-4 rounded">
             <h2 className="text-lg font-bold mb-2">Filter Tenders</h2>
             <div className="mb-4">

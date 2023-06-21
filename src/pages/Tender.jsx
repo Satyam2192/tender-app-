@@ -9,7 +9,7 @@ const Tender = () => {
   useEffect(() => {
     const fetchTenderDetails = async () => {
       try {
-        const baseUrl = "http://localhost:5000/apiTender/tenderdetails/tender";
+        const baseUrl = "/apiTender/tenderdetails/tender";
         const response = await axios.get(`${baseUrl}/${referenceNo}`);
         const tenderDetails = response.data.Product[0];
         console.log("tender id ", referenceNo);
@@ -25,7 +25,15 @@ const Tender = () => {
   }, [referenceNo]);
 
   if (!tenderDetails) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="flex items-center space-x-2 animate-bounce">
+          <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
+          <div className="w-6 h-6 bg-blue-500 rounded-full"></div>
+          <div className="w-6 h-6 bg-green-500 rounded-full"></div>
+        </div>
+      </div>
+    );
   }
 
   return (
