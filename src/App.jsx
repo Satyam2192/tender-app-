@@ -8,6 +8,7 @@ import TenderListingPage from "./pages/TenderListingPage";
 import ContactUsPage from "./pages/ContactPage";
 import Tender from "./pages/Tender";
 import Forms from "./components/Forms"
+import Admin from "./Admin/Admin"
 const App = () => {
 
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/tender/:referenceNo" element={<Tender />} />
           <Route path="/contact" element={<ContactUsPage />} /> 
           <Route path="/forms" element={<Forms />} /> 
+          <Route path="/admin" element={<Admin />} />
 
 
         </Routes>
